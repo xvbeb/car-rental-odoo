@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_car_rental_vehicle_user,car.rental.vehicle user,model_car_rental_vehicle,base.group_user,1,1,1,1
+access_car_rental_vehicle_category_user,car.rental.vehicle.category user,model_car_rental_vehicle_category,base.group_user,1,1,1,1
+access_car_rental_location_user,car.rental.location user,model_car_rental_location,base.group_user,1,1,1,1
+access_car_rental_booking_user,car.rental.booking user,model_car_rental_booking,base.group_user,1,1,1,1
+access_car_rental_inspection_user,car.rental.inspection user,model_car_rental_inspection,base.group_user,1,1,1,1
+access_car_rental_damage_user,car.rental.damage user,model_car_rental_damage,base.group_user,1,1,1,1

@@ -1,0 +1,56 @@
+<odoo>
+    <record id="car_rental_inspection_view_list" model="ir.ui.view">
+        <field name="name">car.rental.inspection.list</field>
+        <field name="model">car.rental.inspection</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="vehicle_id"/>
+                <field name="booking_id" optional="show"/>
+                <field name="inspection_type"/>
+                <field name="inspection_datetime"/>
+                <field name="inspector_id"/>
+                <field name="odometer" optional="show"/>
+                <field name="fuel_level" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="car_rental_inspection_view_form" model="ir.ui.view">
+        <field name="name">car.rental.inspection.form</field>
+        <field name="model">car.rental.inspection</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle Inspection">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="vehicle_id"/>
+                            <field name="booking_id"/>
+                            <field name="inspection_type"/>
+                        </group>
+                        <group>
+                            <field name="inspection_datetime"/>
+                            <field name="inspector_id"/>
+                            <field name="odometer"/>
+                            <field name="fuel_level"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Damages"><field name="damage_ids"/></page>
+                        <page string="Notes"><field name="notes"/></page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="car_rental_inspection_action" model="ir.actions.act_window">
+        <field name="name">Inspections</field>
+        <field name="res_model">car.rental.inspection</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

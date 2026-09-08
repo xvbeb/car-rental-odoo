@@ -1,0 +1,21 @@
+{
+    "name": "Car Rental Management",
+    "summary": "Manage rental vehicles, bookings, inspections, and damages",
+    "version": "19.0.1.0.0",
+    "category": "Services/Rental",
+    "author": "xvbeb",
+    "license": "AGPL-3",
+    "depends": ["contacts"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/car_rental_vehicle_category_views.xml",
+        "views/car_rental_location_views.xml",
+        "views/car_rental_vehicle_views.xml",
+        "views/car_rental_booking_views.xml",
+        "views/car_rental_inspection_views.xml",
+        "views/car_rental_damage_views.xml",
+        "views/car_rental_menus.xml",
+    ],
+    "application": True,
+    "installable": True,
+}
