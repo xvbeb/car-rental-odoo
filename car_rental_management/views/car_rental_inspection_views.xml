@@ -20,7 +20,7 @@
         <field name="name">car.rental.inspection.form</field>
         <field name="model">car.rental.inspection</field>
         <field name="arch" type="xml">
-            <form string="Vehicle Inspection">
+            <form string="Огляд автомобіля">
                 <sheet>
                     <div class="oe_title">
                         <label for="name"/>
@@ -40,8 +40,8 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Damages"><field name="damage_ids"/></page>
-                        <page string="Notes"><field name="notes"/></page>
+                        <page string="Пошкодження"><field name="damage_ids"/></page>
+                        <page string="Примітки"><field name="notes"/></page>
                     </notebook>
                 </sheet>
             </form>
@@ -49,7 +49,7 @@
     </record>
 
     <record id="car_rental_inspection_action" model="ir.actions.act_window">
-        <field name="name">Inspections</field>
+        <field name="name">Огляди</field>
         <field name="res_model">car.rental.inspection</field>
         <field name="view_mode">list,form</field>
     </record>

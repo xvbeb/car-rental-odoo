@@ -1,7 +1,7 @@
-Car Rental Management
-=====================
+Керування орендою автомобілів
+=============================
 
-Odoo 19 module for managing rental vehicles, bookings, locations, inspections,
-and vehicle damages.
+Модуль Odoo 19 для керування автомобілями, бронюваннями, пунктами прокату,
+оглядами та пошкодженнями.
 
-The installable module is located in the ``car_rental_management`` directory.
+Модуль для встановлення розташований у каталозі ``car_rental_management``.

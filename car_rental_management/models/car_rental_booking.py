@@ -3,64 +3,76 @@ from odoo.exceptions import ValidationError
 
 
 class CarRentalBooking(models.Model):
-    """Manage customer reservations and active vehicle rentals."""
+    """Керувати бронюваннями клієнтів та активною орендою автомобілів."""
 
     _name = "car.rental.booking"
-    _description = "Car Rental Booking"
+    _description = "Бронювання автомобіля"
     _order = "date_from desc, id desc"
 
-    name = fields.Char(required=True, default="New", copy=False)
+    name = fields.Char(string="Номер", required=True, default="Нове", copy=False)
     customer_id = fields.Many2one(
         "res.partner",
+        string="Клієнт",
         required=True,
         ondelete="restrict",
     )
     vehicle_id = fields.Many2one(
         "car.rental.vehicle",
+        string="Автомобіль",
         required=True,
         ondelete="restrict",
     )
     pickup_location_id = fields.Many2one(
         "car.rental.location",
+        string="Пункт отримання",
         required=True,
         ondelete="restrict",
     )
     return_location_id = fields.Many2one(
         "car.rental.location",
+        string="Пункт повернення",
         required=True,
         ondelete="restrict",
     )
-    date_from = fields.Datetime(required=True, default=fields.Datetime.now)
-    date_to = fields.Datetime(required=True)
-    day_count = fields.Integer(compute="_compute_amounts", store=True)
-    daily_rate = fields.Monetary(required=True)
-    total_amount = fields.Monetary(compute="_compute_amounts", store=True)
+    date_from = fields.Datetime(
+        string="Дата та час отримання", required=True, default=fields.Datetime.now
+    )
+    date_to = fields.Datetime(string="Дата та час повернення", required=True)
+    day_count = fields.Integer(
+        string="Кількість днів", compute="_compute_amounts", store=True
+    )
+    daily_rate = fields.Monetary(string="Добовий тариф", required=True)
+    total_amount = fields.Monetary(
+        string="Загальна сума", compute="_compute_amounts", store=True
+    )
     currency_id = fields.Many2one(
         "res.currency",
+        string="Валюта",
         related="vehicle_id.currency_id",
         store=True,
     )
     state = fields.Selection(
         [
-            ("draft", "Draft"),
-            ("confirmed", "Confirmed"),
-            ("active", "Active"),
-            ("done", "Done"),
-            ("cancelled", "Cancelled"),
+            ("draft", "Чернетка"),
+            ("confirmed", "Підтверджено"),
+            ("active", "Активна"),
+            ("done", "Завершено"),
+            ("cancelled", "Скасовано"),
         ],
+        string="Статус",
         required=True,
         default="draft",
     )
     inspection_ids = fields.One2many(
         "car.rental.inspection",
         "booking_id",
-        string="Inspections",
+        string="Огляди",
     )
-    notes = fields.Text()
+    notes = fields.Text(string="Примітки")
 
     @api.depends("date_from", "date_to", "daily_rate")
     def _compute_amounts(self):
-        """Compute billable days and the total booking amount."""
+        """Обчислити кількість оплачуваних днів і загальну суму."""
         for booking in self:
             if booking.date_from and booking.date_to:
                 seconds = (booking.date_to - booking.date_from).total_seconds()
@@ -71,16 +83,16 @@ class CarRentalBooking(models.Model):
 
     @api.constrains("date_from", "date_to")
     def _check_rental_period(self):
-        """Require the return date to be later than the pickup date."""
+        """Перевірити, що повернення відбувається пізніше за отримання."""
         for booking in self:
             if booking.date_from and booking.date_to <= booking.date_from:
                 raise ValidationError(
-                    "The return date must be later than the pickup date."
+                    "Дата повернення має бути пізнішою за дату отримання."
                 )
 
     @api.onchange("vehicle_id")
     def _onchange_vehicle_id(self):
-        """Fill rental rate and pickup location from the selected vehicle."""
+        """Заповнити тариф і пункт отримання з вибраного автомобіля."""
         if self.vehicle_id:
             self.daily_rate = self.vehicle_id.daily_rate
             self.pickup_location_id = self.vehicle_id.location_id

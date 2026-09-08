@@ -1,6 +1,6 @@
 {
-    "name": "Car Rental Management",
-    "summary": "Manage rental vehicles, bookings, inspections, and damages",
+    "name": "Керування орендою автомобілів",
+    "summary": "Автомобілі, бронювання, огляди та пошкодження",
     "version": "19.0.1.0.0",
     "category": "Services/Rental",
     "author": "xvbeb",

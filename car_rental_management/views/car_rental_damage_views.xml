@@ -12,7 +12,7 @@
                 <field name="detected_date"/>
                 <field name="severity"/>
                 <field name="state"/>
-                <field name="repair_cost" sum="Total Repair Cost"/>
+                <field name="repair_cost" sum="Загальна вартість ремонту"/>
             </list>
         </field>
     </record>
@@ -21,7 +21,7 @@
         <field name="name">car.rental.damage.form</field>
         <field name="model">car.rental.damage</field>
         <field name="arch" type="xml">
-            <form string="Vehicle Damage">
+            <form string="Пошкодження автомобіля">
                 <sheet>
                     <field name="image" widget="image" class="oe_avatar"/>
                     <div class="oe_title">
@@ -48,7 +48,7 @@
     </record>
 
     <record id="car_rental_damage_action" model="ir.actions.act_window">
-        <field name="name">Damages</field>
+        <field name="name">Пошкодження</field>
         <field name="res_model">car.rental.damage</field>
         <field name="view_mode">list,form</field>
     </record>

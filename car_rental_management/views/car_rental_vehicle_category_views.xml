@@ -18,7 +18,7 @@
         <field name="name">car.rental.vehicle.category.form</field>
         <field name="model">car.rental.vehicle.category</field>
         <field name="arch" type="xml">
-            <form string="Vehicle Category">
+            <form string="Категорія автомобіля">
                 <sheet>
                     <group>
                         <group>
@@ -39,7 +39,7 @@
     </record>
 
     <record id="car_rental_vehicle_category_action" model="ir.actions.act_window">
-        <field name="name">Vehicle Categories</field>
+        <field name="name">Категорії автомобілів</field>
         <field name="res_model">car.rental.vehicle.category</field>
         <field name="view_mode">list,form</field>
     </record>

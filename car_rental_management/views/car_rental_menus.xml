@@ -1,46 +1,46 @@
 <odoo>
     <menuitem id="car_rental_menu_root"
-              name="Car Rental"
+              name="Оренда автомобілів"
               sequence="20"
               web_icon="car_rental_management,static/description/icon.png"/>
 
     <menuitem id="car_rental_booking_menu"
-              name="Bookings"
+              name="Бронювання"
               parent="car_rental_menu_root"
               action="car_rental_booking_action"
               sequence="10"/>
     <menuitem id="car_rental_vehicle_menu"
-              name="Vehicles"
+              name="Автомобілі"
               parent="car_rental_menu_root"
               action="car_rental_vehicle_action"
               sequence="20"/>
 
     <menuitem id="car_rental_operations_menu"
-              name="Operations"
+              name="Операції"
               parent="car_rental_menu_root"
               sequence="30"/>
     <menuitem id="car_rental_inspection_menu"
-              name="Inspections"
+              name="Огляди"
               parent="car_rental_operations_menu"
               action="car_rental_inspection_action"
               sequence="10"/>
     <menuitem id="car_rental_damage_menu"
-              name="Damages"
+              name="Пошкодження"
               parent="car_rental_operations_menu"
               action="car_rental_damage_action"
               sequence="20"/>
 
     <menuitem id="car_rental_configuration_menu"
-              name="Configuration"
+              name="Налаштування"
               parent="car_rental_menu_root"
               sequence="90"/>
     <menuitem id="car_rental_vehicle_category_menu"
-              name="Vehicle Categories"
+              name="Категорії автомобілів"
               parent="car_rental_configuration_menu"
               action="car_rental_vehicle_category_action"
               sequence="10"/>
     <menuitem id="car_rental_location_menu"
-              name="Rental Locations"
+              name="Пункти прокату"
               parent="car_rental_configuration_menu"
               action="car_rental_location_action"
               sequence="20"/>
