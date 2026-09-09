@@ -42,6 +42,19 @@ class CarRentalBooking(models.Model):
         string="Кількість днів", compute="_compute_amounts", store=True
     )
     daily_rate = fields.Monetary(string="Добовий тариф", required=True)
+    extra_service_ids = fields.Many2many(
+        "product.product",
+        "car_rental_booking_product_rel",
+        "booking_id",
+        "product_id",
+        string="Додаткові послуги",
+        domain=[("is_rental_extra", "=", True)],
+    )
+    extra_services_amount = fields.Monetary(
+        string="Вартість додаткових послуг",
+        compute="_compute_amounts",
+        store=True,
+    )
     total_amount = fields.Monetary(
         string="Загальна сума", compute="_compute_amounts", store=True
     )
@@ -70,7 +83,12 @@ class CarRentalBooking(models.Model):
     )
     notes = fields.Text(string="Примітки")
 
-    @api.depends("date_from", "date_to", "daily_rate")
+    @api.depends(
+        "date_from",
+        "date_to",
+        "daily_rate",
+        "extra_service_ids.rental_price_per_day",
+    )
     def _compute_amounts(self):
         """Обчислити кількість оплачуваних днів і загальну суму."""
         for booking in self:
@@ -79,7 +97,14 @@ class CarRentalBooking(models.Model):
                 booking.day_count = max(1, int((seconds + 86399) // 86400))
             else:
                 booking.day_count = 0
-            booking.total_amount = booking.day_count * booking.daily_rate
+            services_daily_rate = sum(
+                booking.extra_service_ids.mapped("rental_price_per_day")
+            )
+            booking.extra_services_amount = booking.day_count * services_daily_rate
+            booking.total_amount = (
+                booking.day_count * booking.daily_rate
+                + booking.extra_services_amount
+            )
 
     @api.constrains("date_from", "date_to")
     def _check_rental_period(self):

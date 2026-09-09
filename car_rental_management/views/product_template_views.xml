@@ -1,0 +1,17 @@
+<odoo>
+    <record id="product_template_view_form_car_rental" model="ir.ui.view">
+        <field name="name">product.template.form.car.rental</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']" position="inside">
+                <group string="Оренда автомобілів">
+                    <field name="is_rental_extra"/>
+                    <field name="rental_price_per_day"
+                           invisible="not is_rental_extra"
+                           required="is_rental_extra"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

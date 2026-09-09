@@ -5,9 +5,11 @@
     "category": "Services/Rental",
     "author": "xvbeb",
     "license": "AGPL-3",
-    "depends": ["contacts"],
+    "depends": ["contacts", "product"],
     "data": [
         "security/ir.model.access.csv",
+        "views/res_partner_views.xml",
+        "views/product_template_views.xml",
         "views/car_rental_vehicle_category_views.xml",
         "views/car_rental_location_views.xml",
         "views/car_rental_vehicle_views.xml",

@@ -1,0 +1,24 @@
+<odoo>
+    <record id="res_partner_view_form_car_rental" model="ir.ui.view">
+        <field name="name">res.partner.form.car.rental</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_rental_bookings"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-car"
+                        invisible="rental_booking_count == 0">
+                    <field name="rental_booking_count"
+                           string="Бронювання"
+                           widget="statinfo"/>
+                </button>
+            </xpath>
+            <field name="function" position="after">
+                <field name="driver_license_number" invisible="is_company"/>
+                <field name="driver_license_expiry" invisible="is_company"/>
+            </field>
+        </field>
+    </record>
+</odoo>
