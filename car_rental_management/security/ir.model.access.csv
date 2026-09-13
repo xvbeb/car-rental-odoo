@@ -5,3 +5,4 @@ access_car_rental_location_user,car.rental.location user,model_car_rental_locati
 access_car_rental_booking_user,car.rental.booking user,model_car_rental_booking,base.group_user,1,1,1,1
 access_car_rental_inspection_user,car.rental.inspection user,model_car_rental_inspection,base.group_user,1,1,1,1
 access_car_rental_damage_user,car.rental.damage user,model_car_rental_damage,base.group_user,1,1,1,1
+access_car_rental_booking_extend_wizard_user,car.rental.booking.extend.wizard user,model_car_rental_booking_extend_wizard,base.group_user,1,1,1,1

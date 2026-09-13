@@ -1,0 +1,33 @@
+<odoo>
+    <record id="car_rental_booking_extend_wizard_view_form" model="ir.ui.view">
+        <field name="name">car.rental.booking.extend.wizard.form</field>
+        <field name="model">car.rental.booking.extend.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Змінити дату повернення">
+                <group>
+                    <field name="booking_ids" widget="many2many_tags"/>
+                    <field name="new_date_to"/>
+                </group>
+                <footer>
+                    <button name="action_apply"
+                            string="Застосувати"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Скасувати"
+                            special="cancel"
+                            class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="car_rental_booking_extend_wizard_action" model="ir.actions.act_window">
+        <field name="name">Змінити дату повернення</field>
+        <field name="res_model">car.rental.booking.extend.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="car_rental_booking_extend_wizard_view_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_car_rental_booking"/>
+        <field name="binding_view_types">list,form</field>
+    </record>
+</odoo>

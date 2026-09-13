@@ -16,6 +16,7 @@
         "views/car_rental_booking_views.xml",
         "views/car_rental_inspection_views.xml",
         "views/car_rental_damage_views.xml",
+        "wizard/car_rental_booking_extend_wizard_views.xml",
         "views/car_rental_menus.xml",
     ],
     "application": True,
